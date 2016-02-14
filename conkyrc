@@ -1,0 +1,77 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+# Update interval in seconds
+update_interval 2.0
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+short_units yes
+
+# How strict should if_up be when testing an interface for being up?
+# The value is one of up, link or address, to check for the interface
+# being solely up, being up and having link or being up, having link
+# and an assigned IP address. 
+if_up_strictness address
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+# use_spacer should have an argument of left, right, or none
+use_spacer left
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+# template {"full_text": "", "color":"\#"},
+
+#Rolling updates
+#{"full_text": "\
+#${if_updatenr 1}host: ${exec hostname}${endif}\
+#${if_updatenr 2}kernel: ${exec /home/fletch/bin/get_kernel.sh -a}${endif}\
+#${if_updatenr 3}distro: ${exec lsb_release -d -s | sed 's/"//g'} (${exec lsb_release -r -s})${endif}\
+#${if_updatenr 4}up: ${uptime}${endif}\
+#", "color":"\#2AA198"},
+
+# Stuff after 'TEXT' will be formatted on screen
+TEXT
+[
+#General Data
+{ "full_text" : "up:", "color":"\#268DB2", "font": "Lucida"},
+{ "full_text" : "${uptime_short}", "color":"\#2AA198", "font": "Lucida"},
+#Network
+{"full_text": "net:", "color":"\#268DB2","separator": false, "separator_block_width":3},
+{"full_text": "${wireless_essid wlan0}", "separator":false, "separator_block_width":3, "color":"\#2AA198"},
+{"full_text": "${addr wlan0}", "color":"\#2AA198", "separator":false, "separator_block_width":1},
+{"full_text": ":", "separator":false, "separator_block_width":1},
+{"full_text": "${exec /home/fletch/bin/get_external_ip.sh}", "color":"\#2AA198"},
+
+#Memory
+{"full_text": "mem:", "color":"\#268DB2","separator": false, "separator_block_width":3},
+{"full_text": "${memperc}%", "min_width":"000%", "separator": false, "separator_block_width":3, "color":"${if_match ${memperc} < 33}\#2AA198${else}${if_match ${memperc} > 66}\#2AA198${else}\#2AA198${endif}${endif}"},
+{"full_text": "${mem}/${memmax}", "color":"\#2AA198"},
+
+#CPU
+{"full_text": "cpu:", "color":"\#268DB2", "separator": false, "separator_block_width":3},
+{"full_text": "${cpu}%", "min_width":"000%", "separator": false, "separator_block_width":3, "color":"${if_match ${cpu} < 33}\#2AA198${else}${if_match ${cpu} > 66}\#2AA198${else}\#c3bf9f${endif}${endif}"},
+{"full_text": "${exec awk '{print $1}' /proc/loadavg}", "separator": false, "separator_block_width":3, "color":"${if_match ${exec awk '{print $1}' /proc/loadavg} < 1.0}\#2AA198${else}${if_match ${exec awk '{print $1}' /proc/loadavg} > 3.0}\#2AA198${else}\#c3bf9f${endif}${endif}", "separator" : false, "separator_block_width" : 5},
+{"full_text": "${exec awk '{print $2}' /proc/loadavg}", "separator": false, "separator_block_width":3, "color":"${if_match ${exec awk '{print $2}' /proc/loadavg} < 1.0}\#2AA198${else}${if_match ${exec awk '{print $2}' /proc/loadavg} > 3.0}\#2AA198${else}\#c3bf9f${endif}${endif}", "separator" : false, "separator_block_width" : 5},
+{"full_text": "${exec awk '{print $3}' /proc/loadavg}", "color":"${if_match ${exec awk '{print $3}' /proc/loadavg} < 1.0}\#2AA198${else}${if_match ${exec awk '{print $3}' /proc/loadavg} > 3.0}\#2AA198${else}\#c3bf9f${endif}${endif}"},
+
+{ "full_text" : "temp:", "color":"\#268DB2","separator" : false, "separator_block_width" : 3 },
+{ "full_text" : "${acpitemp}c","color":"\#2AA198"  },
+
+#Battery
+{"full_text": "bat:", "color":"\#268DB2","separator": false, "separator_block_width":3},
+{"full_text": "${battery_percent BAT0}%", "min_width":"000%","separator":false, "separator_block_width":3, "color":"${if_match ${battery_percent BAT0} > 66}\#2AA198${else}${if_match ${battery_percent BAT0} < 33}\#2AA198${else}\#c3bf9f${endif}${endif}"},
+{"full_text": "${battery_time BAT0}", "color":"\#268DB2", "separator_block_width":3},
+#Time
+{"full_text": " ${time %m.%d.%Y}", "separator": false, "separator_block_width":3, "color":"\#268DB2"},
+{"full_text": "${time %I:%M %P}","color":"\#268DB2"}
+],
