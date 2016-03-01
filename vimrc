@@ -28,7 +28,6 @@ call togglebg#map("<F5>")
 set wrap
 set autoindent
 set encoding=utf-8
-set spell spelllang=en_gb
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -50,3 +49,4 @@ au BufNewFile,BufRead *.py
     \ set expandtab
     \ set autoindent
     \ set fileformat=unix
+set clipboard=unnamedplus
