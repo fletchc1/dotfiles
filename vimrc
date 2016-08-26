@@ -12,6 +12,8 @@ Plugin 'sjl/gundo.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'sjl/badwolf'
 Plugin 'scrooloose/NERDtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "
 " Add all plugins here
 
@@ -50,3 +52,11 @@ nnoremap <leader>u :GundoToggle<CR>
 
 
 call togglebg#map("F5")
+let g:airline#extensions#tabline#enabled = 1
+
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in")| NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
