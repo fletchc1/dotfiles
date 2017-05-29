@@ -19,7 +19,7 @@ Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 
-colorscheme solarized 
+""colorscheme solarized 
 syntax enable
 
 set tabstop=4
