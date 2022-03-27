@@ -12,3 +12,7 @@ PS1='[\u@\h \W]\$ '
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
 	exec sway
 fi
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
