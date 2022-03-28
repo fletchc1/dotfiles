@@ -50,4 +50,18 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
+# alias vim
+alias vi='nvim'
+alias vim='nvim'
+alias svi='sudo nvim'
+
+# alias chmod
+alias mx='chmod a+x'
+
+alias 000='chmod -R 000'
+alias 644='chmod -R 644'
+alias 666='chmod -R 666'
+alias 755='chmod -R 755'
+alias 777='chmod -R 777'
+
 
