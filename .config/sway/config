@@ -23,7 +23,7 @@ set $menu wofi --show=drun --lines=5 --prompt=""
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/chris/Downloads/wp4785633-cracked-laptop-screen-wallpapers.jpg fill
+output * bg /home/chris/images/backgrounds/colourful_triangles.jpg fill
 #
 # Example configuration:
 #
