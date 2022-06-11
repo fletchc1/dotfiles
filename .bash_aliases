@@ -54,6 +54,7 @@ alias ungz='tar -xvzf'
 alias vi='nvim'
 alias vim='nvim'
 alias svi='sudo nvim'
+alias vim_conf='vim ~/.config/nvim/init.vim'
 
 # alias chmod
 alias mx='chmod a+x'

@@ -32,6 +32,7 @@ Plug 'psf/black', { 'branch': 'stable' }
 Plug 'heavenshell/vim-pydocstring'
 
 Plug 'dracula/vim' 
+Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()
 
