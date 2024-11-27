@@ -1,0 +1,9 @@
+layouts:
+  - tall
+  - wide
+  - fullscreen
+window-margins: true
+smart-window-margins: true
+window-margin-size: 5
+mouse-follows-focus: true
+    

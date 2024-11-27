@@ -1,0 +1,37 @@
+[default]
+region=eu-west-2
+output=json
+
+[profile proddata]
+mfa_serial=arn:aws:iam::246673887456:mfa/chris.fletcher
+
+[profile proddata-terraform-user]
+source_profile=proddata
+role_arn=arn:aws:iam::246673887456:role/terraform-user
+mfa_serial=arn:aws:iam::246673887456:mfa/chris.fletcher
+
+[profile proddata-terraform]
+source_profile=proddata-terraform-user
+role_arn=arn:aws:iam::246673887456:role/Terraform
+
+[profile testdata]
+mfa_serial=arn:aws:iam::190557507831:mfa/chris.fletcher
+
+[profile testdata-terraform-user]
+source_profile=proddata
+role_arn=arn:aws:iam::246673887456:role/test-terraform-user
+mfa_serial=arn:aws:iam::246673887456:mfa/chris.fletcher
+
+[profile testdata-terraform]
+source_profile=testdata-terraform-user
+role_arn=arn:aws:iam::190557507831:role/Terraform
+
+[profile redshift-test]
+source_profile=testdata
+mfa_serial=arn:aws:iam::190557507831:mfa/chris.fletcher
+credential_process = aws-vault export --format=json --prompt=osascript --duration=12h redshift-test
+
+[profile redshift-prod]
+source_profile=proddata
+mfa_serial=arn:aws:iam::246673887456:mfa/chris.fletcher
+credential_process = aws-vault export --format=json --prompt=osascript --duration=12h redshift-prod

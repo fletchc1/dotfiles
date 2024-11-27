@@ -1,0 +1,78 @@
+#!/bin/bash
+
+DOTFILES_DIR="$HOME/dotfiles"
+XDG_CONFIG_HOME="$HOME/.config"
+
+create_directories() {
+	local directories=("$@")
+
+	for dir in "${directories[@]}"; do
+		mkdir -p "$dir"
+	done
+}
+
+create_symlinks() {
+	local items=("$@")
+	for item in "${items[@]}"; do
+		IFS=':' read -r source target <<<"$item"
+		if [ -L "$target" ]; then
+			echo "Removing existing symlink $target"
+			unlink "$target"
+		elif [ -d "$target" ]; then
+			echo "Warning: $target is a directory. Skipping..."
+			continue
+		elif [ -e "$target" ]; then
+			echo "Warning: $target already exists. Skipping..."
+			continue
+		fi
+
+		ln -s "$DOTFILES_DIR/$source" "$target"
+		echo "Created simlink for $source"
+	done
+}
+
+
+
+common_directories=(
+	"$XDG_CONFIG_HOME/alacritty"
+	"$XDG_CONFIG_HOME/alacritty/themes"
+)
+
+common_items=(
+	"alacritty.toml:$XDG_CONFIG_HOME/alacritty/alacritty.toml"
+	".tmux.conf:$HOME/.tmux.conf"
+	".inputrc:$HOME/.inputrc"
+	"nvim:$XDG_CONFIG_HOME/nvim"
+	".zprofile:$HOME/.zprofile"
+	".zshrc:$HOME/.zshrc"
+	".amethyst.yml:$HOME/.amethyst.yml"
+)
+
+# Iterate through directories we have defined and add to local home
+create_directories "${common_directories[@]}"
+
+# Iterate through config items from the dotfiles directory and symlink to expected location
+create_symlinks "${common_items[@]}"
+
+# Packages
+
+# install brew
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# get the font out of the way first, it's the most annoying
+
+# install for Mac using brew.
+# brew install --cask font-iosevka-nerd-font
+# brew install --cask font-ubuntu-mono-nerd-font
+
+
+# brew packages Mac
+# brew install --cask alacritty
+# amethyst fzf nvim bash-completion@2 
+
+
+#if [[ "$OSTYPE" == darwin* ]]; then
+	# if there's anything specific to MacOS, then run it here
+
+#fi
+
