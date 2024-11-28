@@ -27,6 +27,8 @@ path=(
 	$path
 	$HOME/bin
 	$HOME/.local/bin
+	/opt/homebrew/bin
+	/usr/local/bin
 	/root/.local/bin
 )
 
@@ -68,6 +70,9 @@ alias mx='chmod a+x'
 ## shortcuts
 alias e='exit'
 alias t='tmux'
+alias pprox='aws-vault --debug exec --server --lazy proddata -- docker compose --project-directory "$DEV_FOLDER/aws-vault/contrib/_aws-vault-proxy" up -d --build'
+alias tprox='aws-vault --debug exec --server --lazy testdata -- docker compose --project-directory "$DEV_FOLDER/aws-vault/contrib/_aws-vault-proxy" up -d --build'
+
 
 # Time tracking
 alias tracktime='git -C $DEV_FOLDER/smart-commits-time-tracking commit --allow-empty -m'
