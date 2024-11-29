@@ -18,9 +18,9 @@ create_symlinks() {
 		if [ -L "$target" ]; then
 			echo "Removing existing symlink $target"
 			unlink "$target"
-		elif [ -d "$target" ]; then
-			echo "Warning: $target is a directory. Skipping..."
-			continue
+		#elif [ -d "$target" ]; then
+			#echo "Warning: $target is a directory. Skipping..."
+		#	continue
 		elif [ -e "$target" ]; then
 			echo "Warning: $target already exists. Skipping..."
 			continue
