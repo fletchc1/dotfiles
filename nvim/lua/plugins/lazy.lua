@@ -19,29 +19,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-	spec = {
-		{"LazyVim/LazyVim", import = "lazyvim.plugins"},
-		{import = "plugins"},
-	},
-	defaults = {
-		lazy = false,
-		version = false,
-	},
-	checker = {
-		enabled = true, notify = false
-	},
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				"gzip",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin"
-			}
-		}
-	}},
+require('lazy').setup(
 	{"craftzdog/solarized-osaka.nvim", lazy = false, priority = 1000, opts = {} },
 	{ 'nvim-telescope/telescope.nvim', tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' }},
 	-- file tree
