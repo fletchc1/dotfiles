@@ -62,21 +62,21 @@ alias lg='lazyygit'
 ## chmods
 alias 000='chmod -R 000'
 alias 600='chmod -R 600'
-alias 644='chmod -R 644'
 alias 666='chmod -R 666'
+alias 644='chmod -R 644'
 alias 755='chmod -R 755'
 alias mx='chmod a+x'
 
 ## shortcuts
 alias e='exit'
 alias t='tmux'
-alias pprox='aws-vault --debug exec --server --lazy proddata -- docker compose --project-directory "$DEV_FOLDER/aws-vault/contrib/_aws-vault-proxy" up -d --build'
-alias tprox='aws-vault --debug exec --server --lazy testdata -- docker compose --project-directory "$DEV_FOLDER/aws-vault/contrib/_aws-vault-proxy" up -d --build'
+alias pprox='aws-vault --debug exec --server --lazy proddata -- docker compose --project-directory "$DEV_FOLDER/aws-vault/contrib/_aws-vault-proxy" up -d --force-recreate'
+alias tprox='aws-vault --debug exec --server --lazy testdata -- docker compose --project-directory "$DEV_FOLDER/aws-vault/contrib/_aws-vault-proxy" up -d --force-recreate'
 
 
 # Time tracking
 alias tracktime='git -C $DEV_FOLDER/smart-commits-time-tracking commit --allow-empty -m'
-alias submittime='git -C $DEV_FOLDER/dev/smart-commits-time-tracking push'
+alias submittime='git -C $DEV_FOLDER/smart-commits-time-tracking push'
 
 
 # Created by `pipx` on 2024-05-21 12:16:24
