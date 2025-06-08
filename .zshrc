@@ -42,6 +42,13 @@ if [ -d "/home/linuxbrew/.linuxbrew" ]; then
 	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+# Keybindings
+#
+
+bindkey "^F" history-incremental-search-forward
+bindkey "^R" history-incremental-search-backward
+bindkey -M vicmd '?' history-incremental-search-backward
+bindkey -M vicmd '/' history-incremental-search-forward
 
 # Aliases
 
@@ -75,6 +82,7 @@ alias tprox='aws-vault --debug exec --server --lazy testdata -- docker compose -
 
 
 # Time tracking
+alias timecodes='echo "TIM-15 = Team meeting; TIM-16 = Standups; TIM-55 = External Meetings; TIM-60 = Technical Designs, Estimates;"'
 alias tracktime='git -C $DEV_FOLDER/smart-commits-time-tracking commit --allow-empty -m'
 alias submittime='git -C $DEV_FOLDER/smart-commits-time-tracking push'
 
@@ -83,3 +91,5 @@ alias submittime='git -C $DEV_FOLDER/smart-commits-time-tracking push'
 
 autoload -U +X compinit && compinit
 export PATH="$PATH:/Users/chrisfletcher/.local/bin"
+
+eval "$(direnv hook zsh)"

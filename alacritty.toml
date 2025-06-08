@@ -13,7 +13,7 @@ y = 7
 
 [general]
 # get themes from https://github.com/alacritty/alacritty-theme
-import = ["~/.config/alacritty/themes/themes/gruvbox_material.toml"]
+import = ["~/.config/alacritty/themes/themes/tokyo_night.toml"]
 
 [terminal]
 [terminal.shell]
