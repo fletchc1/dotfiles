@@ -12,8 +12,8 @@ export DEV_FOLDER="$HOME/dev"
 
 # History
 HISTFILE="$HOME/.zsh_history"
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000
+SAVEHIST=10000
 
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_DUPS
@@ -82,14 +82,22 @@ alias tprox='aws-vault --debug exec --server --lazy testdata -- docker compose -
 
 
 # Time tracking
-alias timecodes='echo "TIM-15 = Team meeting; TIM-16 = Standups; TIM-55 = External Meetings; TIM-60 = Technical Designs, Estimates;"'
+alias timecodes='printf "DA-1468 = Standup Meeting;\n DA-1706 = Writing Handover;\n DA-1716 - Conducting Appraisal;\n DA-1717 - Code Review;\n DA-1718 = Context switching;\n DA-1719 = 1to1 Meeting;\n DA-1720 = Access Control Audit;\n DA-1721 = Company Update;\n DA-1722 = Completing timesheets;\n DA-1723 = Jira management\n DA-1802 HR Training / E-Learning\n DA-1812 = Roadmap Meeting"'
 alias tracktime='git -C $DEV_FOLDER/smart-commits-time-tracking commit --allow-empty -m'
 alias submittime='git -C $DEV_FOLDER/smart-commits-time-tracking push'
+alias show-git-branches="git for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:iso8601) %(refname:short)"
+alias trim-git-branches='git branch -d $(git branch --merged=main | grep -v main)'
 
 
 # Created by `pipx` on 2024-05-21 12:16:24
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
-autoload -U +X compinit && compinit
 export PATH="$PATH:/Users/chrisfletcher/.local/bin"
 
 eval "$(direnv hook zsh)"
+# Added by dbt Fusion extension
+alias dbtf=/Users/chrisfletcher/.local/bin/dbt
