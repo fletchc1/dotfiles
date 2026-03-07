@@ -89,6 +89,14 @@ alias show-git-branches="git for-each-ref --sort=-committerdate refs/heads/ --fo
 alias trim-git-branches='git branch -d $(git branch --merged=main | grep -v main)'
 
 
+# terminal arcjicture
+alias x86="$env /usr/bin/arch -x86_64 /bin/zsh ---login"
+alias arm="$env /usr/bin/arch -arm64 /bin/zsh ---login"
+
+# dev workflow
+alias nuke_tg_cache="find . -type d -name '.terragrunt-cache' -prune -exec rm -rf {} \;"
+alias cz_devrelease="cz bump --devrelease $(date +%s) && git push && git push --tag"
+
 # Created by `pipx` on 2024-05-21 12:16:24
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
@@ -101,3 +109,5 @@ export PATH="$PATH:/Users/chrisfletcher/.local/bin"
 eval "$(direnv hook zsh)"
 # Added by dbt Fusion extension
 alias dbtf=/Users/chrisfletcher/.local/bin/dbt
+export PATH='/Users/chrisfletcher/.duckdb/cli/latest':$PATH
+
