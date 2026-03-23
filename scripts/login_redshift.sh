@@ -30,4 +30,9 @@ TEMP_CREDENTIALS=$(aws redshift get-cluster-credentials --cluster-identifier $1 
 
 CONNECTION_DATA=$(jq --slurp 'add' <(echo $CLUSTER_INFO) <(echo $TEMP_CREDENTIALS))
 
+export PGHOST=$(echo $CONNECTION_DATA | jq -r '.host')
+export PGPORT=$(echo $CONNECTION_DATA | jq -r '.port')
+export PGDATABASE=$(echo $CONNECTION_DATA | jq -r '.dbname')
+export PGUSER=$(echo $CONNECTION_DATA | jq -r '.username')
+export PGPASSWORD=$(echo $CONNECTION_DATA | jq -r '.password')
 echo "$CONNECTION_DATA"

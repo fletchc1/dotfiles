@@ -37,13 +37,7 @@ path=($^path(N-/))
 
 export PATH
 
-## Dev container specific
-if [ -d "/home/linuxbrew/.linuxbrew" ]; then
-	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
 # Keybindings
-#
 
 bindkey "^F" history-incremental-search-forward
 bindkey "^R" history-incremental-search-backward
