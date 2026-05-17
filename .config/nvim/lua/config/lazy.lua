@@ -40,6 +40,8 @@ require("lazy").setup({
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
+        "vim-dadbod",
+        "vim-dadbod-ui",
         -- "matchit",
         -- "matchparen",
         -- "netrwPlugin",

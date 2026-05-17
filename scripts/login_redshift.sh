@@ -26,13 +26,13 @@
 #
 #
 CLUSTER_INFO=$(aws redshift describe-clusters --cluster-identifier $1 --region $2 --query 'Clusters[0].{host: Endpoint.Address, port: Endpoint.Port, dbname: DBName}')
-TEMP_CREDENTIALS=$(aws redshift get-cluster-credentials --cluster-identifier $1 --region $2 --db-user $3 --query '{username: DbUser, password: DbPassword}')
+TEMP_CREDENTIALS=$(aws redshift get-cluster-credentials --cluster-identifier $1 --region $2 --db-user $3 --query '{username: DbUser, password: DbPassword}' --duration=3600)
 
 CONNECTION_DATA=$(jq --slurp 'add' <(echo $CLUSTER_INFO) <(echo $TEMP_CREDENTIALS))
 
 export PGHOST=$(echo $CONNECTION_DATA | jq -r '.host')
 export PGPORT=$(echo $CONNECTION_DATA | jq -r '.port')
 export PGDATABASE=$(echo $CONNECTION_DATA | jq -r '.dbname')
-export PGUSER=$(echo $CONNECTION_DATA | jq -r '.username')
-export PGPASSWORD=$(echo $CONNECTION_DATA | jq -r '.password')
-echo "$CONNECTION_DATA"
+export PGUSER=$(echo $CONNECTION_DATA | jq -r '.username' | tr -d '\n' | jq -sRr @uri)
+export PGPASSWORD=$(echo $CONNECTION_DATA | jq -r '.password' | jq -sRr @uri)
+echo "postgres://${PGHOST}:${PGPORT}/${PGDATABASE}?user=$PGUSER&password=$PGPASSWORD"

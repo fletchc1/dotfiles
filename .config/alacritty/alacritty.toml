@@ -13,10 +13,9 @@ y = 7
 
 [general]
 # get themes from https://github.com/alacritty/alacritty-theme
-import = ["~/.config/alacritty/themes/themes/tokyo_night.toml"]
+import = ["~/.config/alacritty/themes/themes/tokyo_night_enhanced.toml"]
 
 [terminal]
 [terminal.shell]
+args = ["new-session", "-A", "-s", "term"]
 program = "/opt/homebrew/bin/tmux"
-args = ["new", "-A", "-s", "scratch"]
-
