@@ -1,1 +1,5 @@
 .config/alacritty/themes/
+.config/github-copilot
+.config/cagent
+.config/opencode
+scripts/memory
